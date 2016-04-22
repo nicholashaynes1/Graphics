@@ -57,6 +57,8 @@ public class DrawingPanel extends JPanel
 				int height = (int)(Math.random()*100);
 				
 				rectangleList.add(new Rectangle(xPos, yPos, width, height));
+				
+				repaint();
 			}
 		});
 
