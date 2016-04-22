@@ -51,7 +51,12 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent onClick)
 			{
+				int xPos = (int)(Math.random()* getWidth());
+				int yPos = (int)(Math.random()* getHeight());
+				int width = (int)(Math.random()* 100);
+				int height = (int)(Math.random()*100);
 				
+				rectangleList.add(new Rectangle(xPos, yPos, width, height));
 			}
 		});
 
