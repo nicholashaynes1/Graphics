@@ -3,6 +3,8 @@ package graphics.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -13,16 +15,24 @@ public class DrawingPanel extends JPanel
 {
 	private GraphicsController baseController;
 	private JButton rectangleButton;
+	private JButton squareButton;
 	private SpringLayout baseLayout;
-	private ArrayList<Rectangle> rectangleList;
+	private ShapePanel shapePanel;
+	
 
 	public DrawingPanel(GraphicsController baseController)
 	{
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
-		rectangleButton = new JButton("add a rectangle up in hurr yo");
 		
-		rectangleList = new ArrayList<Rectangle>();
+		shapePanel = new ShapePanel();
+		squareButton = new JButton("add a square bruh");
+		shapePanel.add(squareButton);
+		
+		rectangleButton = new JButton("add a rectangle up in hurr yo");
+		shapePanel.add(rectangleButton);
+		
+		
 		
 		setupPanel();
 		setupLayout();
@@ -33,8 +43,10 @@ public class DrawingPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
-		this.add(rectangleButton);
+		
 		this.setBackground(Color.CYAN);
+		this.add(shapePanel);
+		
 
 	}
 
@@ -42,6 +54,10 @@ public class DrawingPanel extends JPanel
 	{
 		baseLayout.putConstraint(SpringLayout.WEST, rectangleButton, 180, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, rectangleButton, -46, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 20, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -20, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -20, SpringLayout.EAST, this);
 
 	}
 
@@ -51,41 +67,35 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent onClick)
 			{
-				int xPos = (int)(Math.random()* getWidth());
-				int yPos = (int)(Math.random()* getHeight());
-				int width = (int)(Math.random()* 100);
-				int height = (int)(Math.random()*100);
+				shapePanel.addRect();
 				
-				rectangleList.add(new Rectangle(xPos, yPos, width, height));
-				
-				repaint();
 			}
 		});
 
-	}
-
-	@Override
-	protected void paintComponent(Graphics currentGraphics)
-	{
-		super.paintComponent(currentGraphics);
-
-		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
-
-		mainGraphics.setStroke(new BasicStroke(10));
-		mainGraphics.setColor(Color.DARK_GRAY);
-
-		mainGraphics.drawRect(100, 300, 200, 100);
 		
-		
-		
-		for(Rectangle current: rectangleList)
+		squareButton.addActionListener(new ActionListener()
 		{
-			int red = (int)(Math.random() * 256);
-			int green = (int)(Math.random() * 256);
-			int blue = (int)(Math.random() * 256);
-			mainGraphics.setColor(new Color(red,green,blue));
-			mainGraphics.fill(current);
-		}
-		
+			public void actionPerformed(ActionEvent onClick)
+			{
+				
+				shapePanel.addSquare();
+			}
+		});
+	
+		this.addMouseMotionListener(new MouseMotionListener()
+		{
+			public void mouseMoved(MouseEvent moved)
+			{
+				
+			}
+			public void mouseDragged(MouseEvent dragged)
+			{
+				int xPos = dragged.getX();
+				int yPos = dragged.getY();
+			}
+		});
+	
 	}
+
+
 }
