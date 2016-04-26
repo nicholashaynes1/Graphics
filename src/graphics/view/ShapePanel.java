@@ -62,6 +62,15 @@ public class ShapePanel extends JPanel
 	{
 		
 	}
+	
+	private void addTringle()
+	{
+		int[] xPoints = {(int)(Math.random() * 150),(int)(Math.random() * 150),(int)(Math.random() * 150)};
+		int[] yPoints = {(int)(Math.random() * 150), (int)(Math.random() * 150),(int)(Math.random() * 150)};
+		
+		Polygon triangle = new Polygon(xPoints, yPoints, 3);
+		triangleList.add(triangle);
+	}
 	@Override
 	protected void paintComponent(Graphics currentGraphics)
 	{
