@@ -23,7 +23,7 @@ public class DrawingFrame extends JFrame
 	{
 		this.setContentPane(basePanel);
 		this.setResizable(false);
-		this.setSize(800,800);
+		this.setSize(1000,1000);
 		this.setTitle("HAIL SATAN!");
 		this.setVisible(true);
 		
