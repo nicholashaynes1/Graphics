@@ -16,6 +16,7 @@ public class DrawingPanel extends JPanel
 	private GraphicsController baseController;
 	private ShapePanel shapePanel;
 	private GraphPanel graphPanel;
+	private JButton graphButton;
 	private JButton rectangleButton;
 	private JButton squareButton;
 	private JButton triangleButton;
@@ -33,23 +34,13 @@ public class DrawingPanel extends JPanel
 
 		shapePanel = new ShapePanel();
 		graphPanel = new GraphPanel();
-		
-		
 
 		squareButton = new JButton("add a square bruh");
 		rectangleButton = new JButton("add a rectangle up in hurr yo");
-
+		graphButton = new JButton("make a graph son");
 		triangleButton = new JButton("TRRIIIIIIIANGLE");
 		polygonButton = new JButton("Polygons bruh");
-		
 		circleButton = new JButton("it must be circ de sol eh with all the circles up in the shiz");
-		
-		circleButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-			}
-		});
 		ellipseButton = new JButton("freaking ellipses sooooonnnnnnnn!!!!!!!!");
 
 		rectList = new ArrayList<Rectangle>();
@@ -74,6 +65,7 @@ public class DrawingPanel extends JPanel
 		this.add(polygonButton);
 		this.add(circleButton);
 		this.add(ellipseButton);
+		this.add(graphButton);
 
 	}
 
@@ -107,6 +99,13 @@ public class DrawingPanel extends JPanel
 
 	private void setupListeners()
 	{
+		graphButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent onClick)
+			{
+				
+			}
+		});
 		rectangleButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent onClick)

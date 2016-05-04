@@ -16,12 +16,23 @@ public class GraphPanel extends JPanel
 
 	public GraphPanel()
 	{
-		valuesToGraph = new int [4];
+		valuesToGraph = new int []{100,5,6,7};
+		setupPanel();
 
 	}
 
-	public void createGraph()
+	private void setupPanel()
 	{
+	
+		
+		
+	}
+
+		
+	protected void paintComponent(Graphics currentGraphics)
+	{
+		super.paintComponent(currentGraphics);
+		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
 
 		for(int index = 0; index < valuesToGraph.length; index++)
 		{
@@ -29,12 +40,17 @@ public class GraphPanel extends JPanel
 			int green = (int)(Math.random() * 256);
 			int blue = (int)(Math.random() * 256);
 			
+			int windowHeight = this.getHeight();
+			int windowWidth = this.getWidth();
+			int xPos = 0;
+			int height = (int) (windowHeight/valuesToGraph.length);
+			int yPos = (int) (index * height);
+			int width = (int) valuesToGraph[index];
 			
-			int xPos = (int) (0 * getWidth());
-			int yPos = (int) (index * getHeight());
-			int width = (int) (index);
-			int height = (int) (30);
 			
+			mainGraphics.setColor(new Color(red, green, blue));
+			
+			mainGraphics.fill(new Rectangle(xPos,yPos,width,height));
 		}
 		
 	}
